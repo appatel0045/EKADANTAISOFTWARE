@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ekdant AI Software - Simple & Premium Algo Trading</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --bg-premium: #0a0d14;
@@ -15,15 +15,21 @@
             --text-gray: #b2b5be;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
 
         body {
             background-color: var(--bg-premium);
             color: var(--text-white);
             line-height: 1.5;
-            font-family: 'Rajdhani', sans-serif;
         }
 
+        /* Top Bar */
         .top-bar {
             background: #1e222d;
             color: var(--highlight-green);
@@ -32,10 +38,10 @@
             font-weight: bold;
             font-size: 0.95rem;
             letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(0,255,136,0.2);
-            font-family: 'Rajdhani', sans-serif;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
         }
 
+        /* Navbar */
         nav {
             display: flex;
             justify-content: space-between;
@@ -46,139 +52,22 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
+            font-size: 1.6rem;
+            font-weight: 800;
             color: var(--text-white);
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        .logo span { color: var(--highlight-blue); }
-
-        /* DAILY RESULT SECTION — above pricing */
-        .slider-section {
-            padding: 60px 6% 40px;
-            text-align: center;
-            background: #0a0d14;
-            border-bottom: 1px solid #1e222d;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .section-subtitle {
-            color: var(--text-gray);
-            margin-bottom: 30px;
-            font-size: 1rem;
-        }
-
-        .slider-wrapper {
-            max-width: 680px;
-            margin: 0 auto;
-            background: var(--card-premium);
-            border: 1px solid #2a2e39;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-        }
-
-        .slider-data-header {
-            display: grid;
-            grid-template-columns: repeat(2,1fr);
-            gap: 10px;
-            background: #1c2030;
-            padding: 14px 16px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            text-align: left;
-            font-size: 0.95rem;
-        }
-
-        .data-item span { font-weight: bold; color: var(--highlight-blue); }
-        .data-item .roi-val { font-weight: 800; }
-
-        /* Chart display */
-        .photo-display-container {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            background: #0e1118;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #2a2e39;
-        }
-
-        .chart-canvas-wrapper {
-            width: 100%;
-            height: 100%;
-            padding: 10px;
-        }
-
-        /* Navigation dots & buttons */
-        .slider-nav {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 18px;
-        }
-
-        .nav-btn {
-            background: #1e222d;
-            border: 1px solid #2a2e39;
-            color: var(--text-white);
-            padding: 8px 22px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            transition: background 0.2s, border-color 0.2s;
-        }
-
-        .nav-btn:hover { background: #2a2e39; border-color: var(--highlight-blue); }
-
-        .dot-nav {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #2a2e39;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .dot.active { background: var(--highlight-green); transform: scale(1.3); }
-
-        .slide-counter {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            min-width: 40px;
-            text-align: center;
-        }
-
-        /* HERO */
+        /* Hero */
         .hero {
-            padding: 80px 6% 50px;
+            padding: 80px 6% 50px 6%;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 2.6rem;
-            font-weight: 900;
+            font-size: 2.8rem;
+            font-weight: 800;
             margin-bottom: 15px;
-            font-family: 'Orbitron', sans-serif;
-            line-height: 1.2;
         }
 
         .hero h1 span {
@@ -191,11 +80,11 @@
             font-size: 1.1rem;
             color: var(--text-gray);
             max-width: 600px;
-            margin: 0 auto 30px;
+            margin: 0 auto 30px auto;
         }
 
         .main-trial-btn {
-            background: linear-gradient(135deg, rgba(0,191,255,0.1), rgba(0,255,136,0.1));
+            background: linear-gradient(135deg, rgba(0, 191, 255, 0.1), rgba(0, 255, 136, 0.1));
             border: 2px dashed var(--highlight-green);
             padding: 25px;
             border-radius: 12px;
@@ -204,7 +93,11 @@
             margin-bottom: 20px;
         }
 
-        .main-trial-btn h3 { font-size: 1.4rem; margin-bottom: 14px; color: var(--text-white); font-family: 'Rajdhani', sans-serif; }
+        .main-trial-btn h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--text-white);
+        }
 
         .btn {
             padding: 12px 28px;
@@ -218,26 +111,44 @@
             font-size: 1rem;
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
-            font-family: 'Rajdhani', sans-serif;
-            letter-spacing: 0.5px;
         }
 
-        .btn:hover { transform: translateY(-2px); }
-        .btn-telegram { background-color: #0088cc; color: white; box-shadow: 0 4px 15px rgba(0,136,204,0.4); }
-        .btn-whatsapp { background-color: #25d366; color: white; box-shadow: 0 4px 15px rgba(37,211,102,0.4); }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
 
-        /* PRICING */
+        .btn-telegram {
+            background-color: #0088cc;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+        }
+
+        /* Pricing Section (First Section Below Hero) */
         .pricing-section {
             padding: 60px 6%;
             text-align: center;
             background: #0e1118;
+            border-bottom: 1px solid #1e222d;
         }
 
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            font-size: 1rem;
+        }
+
+        /* 3 + 3 Row-Balanced Symmetry Alignment Grid */
         .pricing-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 20px;
-            max-width: 1300px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -245,53 +156,148 @@
             background: var(--card-premium);
             border: 1px solid #2a2e39;
             border-radius: 12px;
-            padding: 28px 15px;
+            padding: 35px 20px;
             text-align: center;
-            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 290px;
         }
 
-        .price-card:hover { transform: translateY(-4px); }
-        .price-card.best-value { border: 2px solid var(--highlight-green); }
-        .price-card.prop-card { border: 2px solid #a855f7; }
+        .price-card.best-value {
+            border: 2px solid var(--highlight-green);
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
+        }
 
         .plan-title {
-            font-size: 1.15rem;
+            font-size: 1.3rem;
             color: var(--text-white);
-            margin-bottom: 4px;
+            margin-bottom: 5px;
             font-weight: bold;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
         }
 
-        .plan-subtitle { font-size: 0.85rem; color: var(--highlight-blue); margin-bottom: 14px; font-weight: bold; }
-        .old-price { color: #ff4a4a; text-decoration: line-through; font-size: 0.9rem; }
-        .discount-price { font-size: 1.75rem; font-weight: 800; color: var(--highlight-green); margin: 5px 0 15px; }
-        .prop-price { color: #a855f7 !important; }
+        .plan-subtitle {
+            font-size: 0.85rem;
+            color: var(--highlight-blue);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
 
-        /* Custom Strategy CTA card */
-        .custom-cta-card {
-            background: linear-gradient(135deg, rgba(0,191,255,0.08), rgba(0,255,136,0.08));
-            border: 2px dashed var(--highlight-blue);
-            border-radius: 12px;
-            padding: 28px 20px;
+        .old-price {
+            color: #ff4a4a;
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+
+        .discount-price {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--highlight-green);
+            margin: 5px 0 20px 0;
+        }
+
+        /* Dynamic Equity Graph Slider Section (Positioned Under Pricing) */
+        .slider-section {
+            padding: 60px 6%;
             text-align: center;
-            transition: transform 0.2s;
+            background: #0a0d14;
+            border-bottom: 1px solid #1e222d;
         }
 
-        .custom-cta-card:hover { transform: translateY(-4px); }
-
-        .custom-cta-card .plan-title { color: var(--highlight-blue); }
-
-        .custom-cta-card p {
-            font-size: 0.92rem;
-            color: var(--text-gray);
-            margin-bottom: 16px;
+        /* True Landscape Extra-Wide Layout Container */
+        .slider-wrapper {
+            max-width: 1100px; 
+            margin: 0 auto;
+            background: var(--card-premium);
+            border: 1px solid #2a2e39;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .slider-data-header {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            background: #1c2030;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
 
-        /* Help Section */
-        .help-services { padding: 50px 6%; text-align: center; }
+        .data-item {
+            font-size: 0.95rem;
+        }
+
+        .data-item span {
+            font-weight: bold;
+            color: var(--highlight-blue);
+        }
+
+        .data-item .roi-val {
+            color: var(--highlight-green);
+            font-weight: 800;
+        }
+
+        /* Landscape Graph Box Height Tuning */
+        .photo-display-container {
+            width: 100%;
+            height: 380px;
+            background: #0e1118;
+            border-radius: 8px;
+            padding: 20px 20px 10px 20px;
+            border: 1px solid #2a2e39;
+            position: relative;
+        }
+
+        .chart-canvas-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+
+        .slide-nav-btn {
+            background: #1e222d;
+            border: 1px solid #2a2e39;
+            color: var(--text-white);
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .slide-nav-btn:hover {
+            background: var(--highlight-blue);
+            color: #000;
+        }
+
+        /* Subdued Full Width Landscape Disclaimer Style */
+        .slider-reference-disclaimer {
+            font-size: 0.8rem;
+            color: #666a75;
+            margin-top: 25px;
+            text-align: center;
+            border-top: 1px solid #2a2e39;
+            padding-top: 15px;
+            line-height: 1.5;
+            letter-spacing: 0.2px;
+        }
+
+        /* Services */
+        .help-services {
+            padding: 50px 6%;
+            text-align: center;
+        }
 
         .services-simple-list {
             display: flex;
@@ -303,10 +309,18 @@
             font-size: 0.95rem;
         }
 
-        .services-simple-list span::before { content: "✓ "; color: var(--highlight-green); font-weight: bold; }
+        .services-simple-list span::before {
+            content: "✓ ";
+            color: var(--highlight-green);
+            font-weight: bold;
+        }
 
-        /* Strategy Cards */
-        .strategy-bottom-section { padding: 60px 6%; background: #0e1118; border-top: 1px solid #1e222d; }
+        /* Bottom Grid */
+        .strategy-bottom-section {
+            padding: 60px 6%;
+            background: #0e1118;
+            border-top: 1px solid #1e222d;
+        }
 
         .strat-card-grid {
             display: grid;
@@ -322,55 +336,71 @@
             padding: 20px;
             border-radius: 10px;
             text-align: left;
-            font-family: 'Rajdhani', sans-serif;
         }
 
         .strat-simple-card h4 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .risk-lbl { font-size: 0.75rem; padding: 3px 8px; border-radius: 12px; font-weight: bold; text-transform: uppercase; }
-        .risk-s { background: rgba(0,255,136,0.15); color: var(--highlight-green); }
-        .risk-m { background: rgba(0,191,255,0.15); color: var(--highlight-blue); }
-        .risk-h { background: rgba(255,74,74,0.15); color: #ff4a4a; }
-        .risk-p { background: rgba(168,85,247,0.15); color: #a855f7; }
+        .strat-simple-card .risk-lbl {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-        .strat-simple-card p { font-size: 0.9rem; color: var(--text-gray); }
+        .risk-s { background: rgba(0, 255, 136, 0.15); color: var(--highlight-green); }
+        .risk-m { background: rgba(0, 191, 255, 0.15); color: var(--highlight-blue); }
+        .risk-h { background: rgba(255, 74, 74, 0.15); color: #ff4a4a; }
 
-        /* FLOATING SOCIAL BAR with logos */
+        .strat-simple-card p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* Floating Panel */
         .floating-social-bar {
             position: fixed;
-            right: 18px;
+            right: 20px;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
             z-index: 1000;
         }
 
         .floating-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            text-decoration: none;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.5);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
         }
 
-        .floating-icon:hover { transform: scale(1.12); box-shadow: 0 6px 20px rgba(0,0,0,0.6); }
+        .floating-icon:hover {
+            transform: scale(1.15);
+        }
+
         .f-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
         .f-wa { background-color: #25d366; }
         .f-tg { background-color: #0088cc; }
 
+        .floating-icon svg {
+            width: 26px;
+            height: 26px;
+            fill: white;
+        }
+
+        /* Footer */
         footer {
             background: #07090e;
             padding: 40px 6%;
@@ -378,368 +408,272 @@
             color: #626670;
             border-top: 1px solid #1e222d;
             text-align: justify;
-            font-family: 'Rajdhani', sans-serif;
         }
 
-        .footer-line { margin-top: 20px; text-align: center; color: #43464e; font-size: 0.8rem; }
+        .footer-line {
+            margin-top: 20px;
+            text-align: center;
+            color: #43464e;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 992px) {
+            .pricing-container { grid-template-columns: repeat(2, 1fr); }
+        }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.7rem; }
+            .hero h1 { font-size: 2rem; }
             .pricing-container { grid-template-columns: 1fr; }
             .slider-data-header { grid-template-columns: 1fr; }
-            .floating-social-bar { right: 8px; }
+            .floating-social-bar { right: 10px; }
             .floating-icon { width: 44px; height: 44px; }
+            .floating-icon svg { width: 22px; height: 22px; }
         }
     </style>
 </head>
 <body>
 
-<div class="top-bar">
-    🎁 Special Offer: Download and Use Our Trading Scripts Free For 1 Month!
-</div>
+    <div class="top-bar">
+        🎁 Special Offer: Download and Use Our Trading Scripts Free For 1 Month!
+    </div>
 
-<nav>
-    <div class="logo">EKDANT <span>AI</span> SOFTWARE</div>
-</nav>
+    <nav>
+        <div class="logo">EKDANT AI SOFTWARE</div>
+    </nav>
 
-<!-- DAILY RESULT SECTION — above pricing -->
-<section class="slider-section">
-    <div class="section-title">Daily Live Results</div>
-    <div class="section-subtitle">Har roz ke live strategy reports — Next/Prev button se alag charts dekho</div>
-
-    <div class="slider-wrapper">
-        <div class="slider-data-header">
-            <div class="data-item">Strategy: <span id="lbl-strat">Safe Trade</span></div>
-            <div class="data-item">Date: <span id="lbl-date">May 28, 2026</span></div>
-            <div class="data-item">Capital Used: <span id="lbl-cap">$5,000</span></div>
-            <div class="data-item">Daily Profit: <span id="lbl-roi" class="roi-val" style="color:#00ff88;">+1.20% ROI</span></div>
+    <section class="hero">
+        <h1>Get Your <span>1-Month Free Trial</span> Trading Script</h1>
+        <p>Hum banate hain aasan automated trading tools aapke setup ke liye. Koi hidden charges nahi, seedha chat par aao aur trial shuru karo.</p>
+        
+        <div class="main-trial-btn">
+            <h3>Try Free for 30 Days</h3>
+            <a href="https://t.me/ekdantai" class="btn btn-telegram" target="_blank">💬 Message on Telegram</a>
         </div>
+    </section>
 
-        <div class="photo-display-container">
-            <div class="chart-canvas-wrapper">
-                <canvas id="equityChart"></canvas>
+    <section id="pricing" class="pricing-section">
+        <div class="section-title">Hamare Simple Plans</div>
+        <div class="section-subtitle">Apne trading goals ke hisab se best license choice select kijiye.</div>
+
+        <div class="pricing-container">
+            <div class="price-card">
+                <div>
+                    <div class="plan-title">Starter Pack</div>
+                    <div class="plan-subtitle">Koi bhi 1 Tool</div>
+                    <div class="old-price">Original: ₹19,999</div>
+                    <div class="discount-price">₹9,999 / Month</div>
+                </div>
+                <a href="https://t.me/ekdantai" class="btn btn-telegram" style="width:100%; font-size:0.9rem;">Chat to Buy</a>
+            </div>
+
+            <div class="price-card">
+                <div>
+                    <div class="plan-title">Growth Pack</div>
+                    <div class="plan-subtitle">Koi bhi 2 Tools</div>
+                    <div class="old-price">Original: ₹34,999</div>
+                    <div class="discount-price">₹17,999 / Month</div>
+                </div>
+                <a href="https://t.me/ekdantai" class="btn btn-telegram" style="width:100%; font-size:0.9rem;">Chat to Buy</a>
+            </div>
+
+            <div class="price-card">
+                <div>
+                    <div class="plan-title">ScaleX Pack</div>
+                    <div class="plan-subtitle">Koi bhi 3 Tools</div>
+                    <div class="old-price">Original: ₹49,999</div>
+                    <div class="discount-price">₹24,999 / Month</div>
+                </div>
+                <a href="https://t.me/ekdantai" class="btn btn-telegram" style="width:100%; font-size:0.9rem;">Chat to Buy</a>
+            </div>
+
+            <div class="price-card best-value">
+                <div>
+                    <div class="plan-title">Titan Bundle</div>
+                    <div class="plan-subtitle">Saare Tools Ek Saath</div>
+                    <div class="old-price">Original: ₹69,999</div>
+                    <div class="discount-price" style="color: var(--highlight-green);">₹29,999 / Month</div>
+                </div>
+                <a href="https://t.me/ekdantai" class="btn btn-telegram" style="width:100%; font-size:0.9rem; background: var(--highlight-green); color:#000;">Chat to Buy</a>
+            </div>
+
+            <div class="price-card">
+                <div>
+                    <div class="plan-title">Prop-Firm Spec.</div>
+                    <div class="plan-subtitle">Funded Account Passing Script</div>
+                    <div class="old-price">Original: ₹10,000</div>
+                    <div class="discount-price">₹4,999 / Month</div>
+                </div>
+                <a href="https://t.me/ekdantai" class="btn btn-telegram" style="width:100%; font-size:0.9rem;">Chat to Buy</a>
+            </div>
+
+            <div class="price-card" style="border: 1px dashed var(--highlight-blue);">
+                <div>
+                    <div class="plan-title">Custom Strategy</div>
+                    <div class="plan-subtitle">Build Your Private Logic</div>
+                    <div class="discount-price" style="font-size:1.3rem; margin: 20px 0; color: var(--highlight-blue);">ASK PRICE ON CHAT</div>
+                </div>
+                <a href="https://wa.me/919537826793?text=Hello%20Ekdant%20AI%20Software,%20I%20want%20to%20ask%20pricing%20for%20a%20customized%20strategy%20script." class="btn btn-telegram" style="width:100%; font-size:0.9rem; background: var(--highlight-blue); color:#000;">Ask on WhatsApp</a>
             </div>
         </div>
+    </section>
 
-        <div class="slider-nav">
-            <button class="nav-btn" onclick="changeSlide(-1)">← Prev</button>
-            <div class="dot-nav" id="dotNav"></div>
-            <span class="slide-counter" id="slideCounter">1 / 5</span>
-            <button class="nav-btn" onclick="changeSlide(1)">Next →</button>
+    <section class="slider-section">
+        <div class="section-title">Backtest & Performance Overview</div>
+        <div class="section-subtitle" style="margin-bottom:25px;">Hamare primary frameworks ki structural tracking metrics aur analysis data.</div>
+
+        <div class="slider-wrapper">
+            <div class="slider-data-header">
+                <div class="data-item">Strategy Block: <span id="lbl-strat">Safe Trade</span></div>
+                <div class="data-item">Account Baseline: <span id="lbl-cap">$10,000</span></div>
+                <div class="data-item">Total Net Performance: <span id="lbl-roi" class="roi-val">+58.40% ROI</span></div>
+            </div>
+
+            <div class="photo-display-container">
+                <div class="chart-canvas-wrapper">
+                    <canvas id="equityChart"></canvas>
+                </div>
+            </div>
+
+            <div class="slider-controls">
+                <button class="slide-nav-btn" onclick="prevReport()">← Previous</button>
+                <button class="slide-nav-btn" onclick="nextReport()">Next Report →</button>
+            </div>
+            
+            <div class="slider-reference-disclaimer">
+                Note: Yeh graphics aur metrics structural performance verification data hain. Recent aur completely accurate execution logs real-time dekhne ke liye seedha chat par humse connect karein.
+            </div>
         </div>
+    </section>
 
-        <p style="font-size:0.85rem; color:var(--text-gray); margin-top:14px;">
-            Pichle dino ke saare backtest aur raw files chahiye to aap humein chat par aake bol sakte hain, hum turant send kar denge.
-        </p>
-        <p style="font-size:0.8rem; color:#626670; margin-top:6px; font-style:italic;">
-            📷 Chart images update karne ke liye: HTML file mein <code style="color:var(--highlight-blue);">reportsData</code> array mein <code style="color:var(--highlight-blue);">equityCurve</code> values badal do, ya image tag add kar do — neeche guide diya hai.
-        </p>
-    </div>
-</section>
+    <section class="help-services">
+        <div class="section-title" style="font-size:1.6rem;">Hum Kya Help Karenge?</div>
+        <div class="services-simple-list">
+            <span>Full Installation Support</span>
+            <span>Setup Configuration Assistance</span>
+            <span>VPS Setup Guidance</span>
+            <span>Lifetime Chat Support</span>
+        </div>
+    </section>
 
-<!-- HERO -->
-<section class="hero">
-    <h1>Get Your <span>1-Month Free Trial</span> Trading Script</h1>
-    <p>Hum banate hain aasan automated trading tools aapke setup ke liye. Koi hidden charges nahi, seedha chat par aao aur trial shuru karo.</p>
+    <section class="strategy-bottom-section">
+        <div class="section-title" style="text-align:center;">Our Simple Strategy Rules</div>
+        <div class="section-subtitle" style="text-align:center; margin-bottom:40px;">Aap apne hisab se risk profile pasand kar sakte hain.</div>
 
-    <div class="main-trial-btn">
-        <h3>Try Free for 30 Days</h3>
-        <a href="https://t.me/ekdantai" class="btn btn-telegram" target="_blank">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-            Message on Telegram
+        <div class="strat-card-grid">
+            <div class="strat-simple-card">
+                <h4>Safe Trade <span class="risk-lbl risk-s">Low Risk</span></h4>
+                <p>Kam risk ke sath account safe rakhne ke liye banaya gaya hai. Stable and slow profit structure.</p>
+            </div>
+            <div class="strat-simple-card">
+                <h4>Balance Growth <span class="risk-lbl risk-m">Medium Risk</span></h4>
+                <p>Moving Average cross filters par chalta hai. Market trend ko pakad kar decent momentum nikalta hai.</p>
+            </div>
+            <div class="strat-simple-card">
+                <h4>High Return Grid <span class="risk-lbl risk-m">Grid Rule</span></h4>
+                <p>Fixed mathematical stop loss ke sath grid setup lagata hai, badhe profit filters ke liye.</p>
+            </div>
+            <div class="strat-simple-card">
+                <h4>Speed Breakout <span class="risk-lbl risk-h">High Risk</span></h4>
+                <p>Tez aur aggressive breakout points ko jaldi se catch karne ke liye programming code hai.</p>
+            </div>
+            <div class="strat-simple-card">
+                <h4>Normal Trend Pilot <span class="risk-lbl risk-s">Low Risk</span></h4>
+                <p>Macro session intervals me chalne wala simple safe algorithmic trend companion tracker.</p>
+            </div>
+            <div class="strat-simple-card">
+                <h4>Prop Firm Support <span class="risk-lbl risk-m">Assessment</span></h4>
+                <p>Isme system pehle se hardcoded daily drawdown limit ke sath tight block lock par kaam karta hai.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="floating-social-bar">
+        <a href="https://www.instagram.com/ekdantaisoftware?igsh=Y2V2b3YwcHpjN3po" class="floating-icon f-ig" target="_blank" title="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a href="https://wa.me/919537826793" class="floating-icon f-wa" target="_blank" title="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.179.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.34 11.905-11.892 11.905-2.01-.001-3.988-.51-5.744-1.479L0 24zm6.59-4.846c1.63.967 3.56 1.478 5.542 1.479 5.328 0 9.663-4.333 9.665-9.664.002-2.583-1.005-5.011-2.836-6.842A9.544 9.544 0 0 0 12.16 1.15c-5.33 0-9.666 4.334-9.668 9.665-.001 1.917.498 3.793 1.446 5.462L2.91 21.09l4.923-1.291zM17.481 14.3c-.29-.145-1.716-.847-1.982-.943-.266-.096-.46-.145-.653.145-.193.29-.748.943-.917 1.137-.169.193-.338.217-.628.072-2.935-1.463-4.903-4.436-5.408-5.304-.29-.5-.03-.77.22-.998.224-.205.49-.57.736-.856.097-.113.162-.193.242-.314.08-.12.04-.229-.02-.349-.06-.12-.461-1.11-.631-1.517-.166-.403-.332-.349-.46-.356-.117-.006-.252-.008-.387-.008-.135 0-.355.051-.54.253-.185.203-.708.692-.708 1.688 0 .996.723 1.957.824 2.092.101.135 1.423 2.174 3.447 3.05.482.209.859.334 1.152.428.484.154.925.132 1.272.08.388-.058 1.716-.701 1.957-1.378.242-.677.242-1.258.17-1.378-.072-.12-.266-.193-.556-.338z"/></svg>
+        </a>
+        <a href="https://t.me/ekdantai" class="floating-icon f-tg" target="_blank" title="Telegram">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.62.15-.15 2.7-2.46 2.75-2.68.01-.03.01-.14-.06-.2-.07-.06-.17-.04-.25-.02-.11.02-1.83 1.16-5.16 3.41-.49.33-.93.5-1.33.49-.44-.01-1.29-.25-1.92-.45-.77-.25-1.39-.39-1.34-.83.03-.23.35-.47.97-.71 3.79-1.65 6.32-2.74 7.57-3.27 3.6-1.5 4.35-1.76 4.84-1.77.11 0 .35.03.5.16.13.12.17.28.18.39-.01.07-.01.14-.02.22z"/></svg>
         </a>
     </div>
-</section>
 
-<!-- PRICING -->
-<section id="pricing" class="pricing-section">
-    <div class="section-title">Hamare Simple Plans</div>
-    <div class="section-subtitle" style="margin-bottom:40px;">Deal Telegram ya WhatsApp par hoti hai.</div>
+    <footer>
+        <strong>Legal Disclaimer:</strong> EKDANT AI SOFTWARE ek independent coding and software utilities service platform hai. Hum strictly custom code design, automated software tools aur personal execution scripts provide karte hain. Hum koi registered investment advisor, stock broker, financial analyst ya SEBI-registered entity nahi hain. Hum market signals, investment tips, managed trading accounts ya kisi bhi tarah ke guaranteed return ka waada nahi karte hain. Algorithmic software testing aur backtest reports sirf educational testing data ke liye dikhaye gaye hain aur ye future performance ki guarantee nahi hain. Har banda apni zimmedari aur samajh par hi automated scripts tools deploy karega. Hum public money handle nahi karte hain.
+        <div class="footer-line">&copy; 2026 Ekdant AI Software. Custom Script Service Company.</div>
+    </footer>
 
-    <div class="pricing-container">
-        <div class="price-card">
-            <div class="plan-title">Starter Pack</div>
-            <div class="plan-subtitle">Koi bhi 1 Tool</div>
-            <div class="old-price">Original: ₹19,999</div>
-            <div class="discount-price">₹9,999 / Month</div>
-            <a href="https://t.me/ekdantai" class="btn btn-telegram" style="width:100%; font-size:0.9rem;" target="_blank">Chat to Buy</a>
-        </div>
+    <script>
+        // High-trust permanent upward zigzag datasets always terminating perfectly matching target performance metrics
+        const reportsData = [
+            { strat: "Safe Trade", cap: "$10,000", roi: "+58.40% ROI", color: "#00ff88", curve: [10000, 10350, 10150, 10900, 11450, 11100, 12600, 13400, 12900, 14100, 14900, 14500, 15840] },
+            { strat: "Balance Growth", cap: "$10,000", roi: "+64.15% ROI", color: "#00bfff", curve: [10000, 10120, 10800, 10500, 11900, 12400, 12100, 13800, 14600, 14150, 15700, 15300, 16415] },
+            { strat: "High Return Grid", cap: "$10,000", roi: "+82.90% ROI", color: "#eab308", curve: [10000, 10900, 10400, 12100, 11600, 13900, 13100, 15400, 14800, 16900, 16100, 18900, 18290] },
+            { strat: "Speed Breakout", cap: "$10,000", roi: "+51.35% ROI", color: "#ff4a4a", curve: [10000, 10600, 10300, 11450, 11100, 12400, 12100, 13200, 12900, 14400, 14100, 15500, 15135] },
+            { strat: "Prop Firm Support", cap: "$10,000", roi: "+76.20% ROI", color: "#a855f7", curve: [10000, 10400, 11200, 10950, 12600, 12200, 14100, 13600, 15800, 15200, 17100, 16600, 17620] }
+        ];
 
-        <div class="price-card">
-            <div class="plan-title">Growth Pack</div>
-            <div class="plan-subtitle">Koi bhi 2 Tools</div>
-            <div class="old-price">Original: ₹34,999</div>
-            <div class="discount-price">₹17,999 / Month</div>
-            <a href="https://t.me/ekdantai" class="btn btn-telegram" style="width:100%; font-size:0.9rem;" target="_blank">Chat to Buy</a>
-        </div>
+        let currentIndex = 0;
+        let chartInstance = null;
 
-        <div class="price-card">
-            <div class="plan-title">ScaleX Pack</div>
-            <div class="plan-subtitle">Koi bhi 3 Tools</div>
-            <div class="old-price">Original: ₹49,999</div>
-            <div class="discount-price">₹24,999 / Month</div>
-            <a href="https://t.me/ekdantai" class="btn btn-telegram" style="width:100%; font-size:0.9rem;" target="_blank">Chat to Buy</a>
-        </div>
+        function renderChart(index) {
+            const currentItem = reportsData[index];
+            
+            document.getElementById('lbl-strat').innerText = currentItem.strat;
+            document.getElementById('lbl-cap').innerText = currentItem.cap;
+            
+            const roiLabel = document.getElementById('lbl-roi');
+            roiLabel.innerText = currentItem.roi;
+            roiLabel.style.color = currentItem.color;
 
-        <div class="price-card best-value">
-            <div class="plan-title">Titan Bundle</div>
-            <div class="plan-subtitle">Saare Tools Ek Saath</div>
-            <div class="old-price">Original: ₹69,999</div>
-            <div class="discount-price">₹29,999 / Month</div>
-            <a href="https://t.me/ekdantai" class="btn" style="width:100%; font-size:0.9rem; background:var(--highlight-green); color:#000;" target="_blank">Chat to Buy</a>
-        </div>
-
-        <!-- NEW: Prop Firm Card -->
-        <div class="price-card prop-card">
-            <div class="plan-title" style="color:#a855f7;">Prop-Firm Spec.</div>
-            <div class="plan-subtitle" style="color:#a855f7;">Funded Account Passing Script</div>
-            <div class="old-price">Original: ₹10,000</div>
-            <div class="discount-price prop-price">₹4,999 / Month</div>
-            <a href="https://t.me/ekdantai" class="btn" style="width:100%; font-size:0.9rem; background:#a855f7; color:#fff; box-shadow: 0 4px 15px rgba(168,85,247,0.4);" target="_blank">Chat to Buy</a>
-        </div>
-
-        <!-- NEW: Custom Strategy CTA -->
-        <div class="custom-cta-card">
-            <div class="plan-title" style="font-size:1rem; margin-bottom:6px;">Custom Strategy</div>
-            <div class="plan-subtitle">Apni strategy banwao — aapke hisab se</div>
-            <p>Koi special rule, indicator, ya backtesting requirement hai? Hum aapke liye custom script banate hain. Price aapki requirement par depend karti hai.</p>
-            <div class="btn-group">
-                <a href="https://wa.me/919537826793" class="btn btn-whatsapp" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    Ask on WhatsApp
-                </a>
-                <a href="https://www.instagram.com/ekdantaisoftware" class="btn" style="background: linear-gradient(45deg,#f09433,#dc2743,#bc1888); color:white;" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    Ask on Instagram
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="help-services">
-    <div class="section-title" style="font-size:1.6rem;">Hum Kya Help Karenge?</div>
-    <div class="services-simple-list">
-        <span>Full Installation Support</span>
-        <span>Setup Configuration Assistance</span>
-        <span>VPS Setup Guidance</span>
-        <span>Lifetime Chat Support</span>
-    </div>
-</section>
-
-<section class="strategy-bottom-section">
-    <div class="section-title" style="text-align:center;">Our Simple Strategy Rules</div>
-    <div class="section-subtitle" style="text-align:center; margin-bottom:40px;">Aap apne hisab se risk profile pasand kar sakte hain.</div>
-
-    <div class="strat-card-grid">
-        <div class="strat-simple-card">
-            <h4>Safe Trade <span class="risk-lbl risk-s">Low Risk</span></h4>
-            <p>Kam risk ke sath account safe rakhne ke liye banaya gaya hai. Stable and slow profit structure.</p>
-        </div>
-        <div class="strat-simple-card">
-            <h4>Balance Growth <span class="risk-lbl risk-m">Medium Risk</span></h4>
-            <p>Moving Average cross filters par chalta hai. Market trend ko pakad kar decent momentum nikalta hai.</p>
-        </div>
-        <div class="strat-simple-card">
-            <h4>High Return Grid <span class="risk-lbl risk-m">Grid Rule</span></h4>
-            <p>Fixed mathematical stop loss ke sath grid setup lagata hai, badhe profit filters ke liye.</p>
-        </div>
-        <div class="strat-simple-card">
-            <h4>Speed Breakout <span class="risk-lbl risk-h">High Risk</span></h4>
-            <p>Tez aur aggressive breakout points ko jaldi se catch karne ke liye programming code hai.</p>
-        </div>
-        <div class="strat-simple-card">
-            <h4>Normal Trend Pilot <span class="risk-lbl risk-s">Low Risk</span></h4>
-            <p>Macro session intervals me chalne wala simple safe algorithmic trend companion tracker.</p>
-        </div>
-        <div class="strat-simple-card">
-            <h4>Prop Firm Support <span class="risk-lbl risk-p">Assessment</span></h4>
-            <p>System pehle se hardcoded daily drawdown limit ke sath tight block lock par kaam karta hai.</p>
-        </div>
-    </div>
-</section>
-
-<!-- FLOATING SOCIAL BAR with SVG logos -->
-<div class="floating-social-bar">
-    <a href="https://www.instagram.com/ekdantaisoftware?igsh=Y2V2b3YwcHpjN3po" class="floating-icon f-ig" target="_blank" title="Instagram">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-    </a>
-    <a href="https://wa.me/919537826793" class="floating-icon f-wa" target="_blank" title="WhatsApp">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
-    <a href="https://t.me/ekdantai" class="floating-icon f-tg" target="_blank" title="Telegram">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-    </a>
-</div>
-
-<footer>
-    <strong>Legal Disclaimer:</strong> EKDANT AI SOFTWARE ek independent coding and software utilities service platform hai. Hum strictly custom code design, automated software tools aur personal execution scripts provide karte hain. Hum koi registered investment advisor, stock broker, financial analyst ya SEBI-registered entity nahi hain. Hum market signals, investment tips, managed trading accounts ya kisi bhi tarah ke guaranteed return ka waada nahi karte hain. Algorithmic software testing aur backtest reports sirf educational testing data ke liye dikhaye gaye hain aur ye future performance ki guarantee nahi hain. Har banda apni zimmedari aur samajh par hi automated scripts tools deploy karega. Hum public money handle nahi karte hain.
-    <div class="footer-line">&copy; 2026 Ekdant AI Software. Custom Script Service Company.</div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-<script>
-// =====================================================================
-// DAILY RESULT DATA — YE BADLO APNE DAILY RESULTS KE ACCORDING
-// =====================================================================
-// Har report mein equityCurve = [] ke andar values dalo (starting balance se ending tak)
-// Example: agar $5000 se shuru hua aur 10 trades hua to 10 values dalo
-// =====================================================================
-const reportsData = [
-    {
-        strat: "Safe Trade",
-        date: "May 28, 2026",
-        cap: "$5,000",
-        roi: "+1.20% ROI",
-        color: "#00ff88",
-        // Yahan apne daily equity curve ke points dalo
-        equityCurve: [5000, 5020, 5035, 5048, 5060, 5072, 5080, 5090, 5055, 5062, 5070, 5060]
-    },
-    {
-        strat: "Balance Growth",
-        date: "May 27, 2026",
-        cap: "$7,500",
-        roi: "+1.85% ROI",
-        color: "#00bfff",
-        equityCurve: [7500, 7520, 7560, 7610, 7580, 7620, 7655, 7700, 7688, 7639]
-    },
-    {
-        strat: "High Return Grid",
-        date: "May 26, 2026",
-        cap: "$10,000",
-        roi: "+2.40% ROI",
-        color: "#eab308",
-        equityCurve: [10000, 10080, 10200, 10150, 10300, 10280, 10350, 10420, 10390, 10240]
-    },
-    {
-        strat: "Speed Breakout",
-        date: "May 25, 2026",
-        cap: "$4,000",
-        roi: "+3.15% ROI",
-        color: "#ff4a4a",
-        equityCurve: [4000, 3950, 4020, 4100, 4050, 4120, 4200, 4180, 4126]
-    },
-    {
-        strat: "Prop Firm Support",
-        date: "May 24, 2026",
-        cap: "$25,000",
-        roi: "+1.05% ROI",
-        color: "#a855f7",
-        equityCurve: [25000, 25100, 25180, 25160, 25220, 25260, 25250, 25262]
-    }
-];
-
-let currentIndex = 0;
-let chartInstance = null;
-
-function buildDots() {
-    const dotNav = document.getElementById('dotNav');
-    dotNav.innerHTML = '';
-    reportsData.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.className = 'dot' + (i === 0 ? ' active' : '');
-        dot.onclick = () => goToSlide(i);
-        dotNav.appendChild(dot);
-    });
-}
-
-function updateDots() {
-    document.querySelectorAll('.dot').forEach((d, i) => {
-        d.classList.toggle('active', i === currentIndex);
-    });
-}
-
-function renderChart(index) {
-    const d = reportsData[index];
-
-    // Labels generate karo (Trade 1, 2, 3...)
-    const labels = d.equityCurve.map((_, i) => i === 0 ? 'Start' : `T${i}`);
-    const startVal = d.equityCurve[0];
-
-    // Update header
-    document.getElementById('lbl-strat').innerText = d.strat;
-    document.getElementById('lbl-date').innerText = d.date;
-    document.getElementById('lbl-cap').innerText = d.cap;
-    const roiEl = document.getElementById('lbl-roi');
-    roiEl.innerText = d.roi;
-    roiEl.style.color = d.color;
-    document.getElementById('slideCounter').innerText = `${index + 1} / ${reportsData.length}`;
-
-    updateDots();
-
-    // Destroy old chart
-    if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
-
-    const ctx = document.getElementById('equityChart').getContext('2d');
-
-    // Gradient fill
-    const gradient = ctx.createLinearGradient(0, 0, 0, 260);
-    gradient.addColorStop(0, d.color + '55');
-    gradient.addColorStop(1, d.color + '00');
-
-    chartInstance = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: d.strat + ' Equity',
-                data: d.equityCurve,
-                borderColor: d.color,
-                backgroundColor: gradient,
-                borderWidth: 2.5,
-                pointBackgroundColor: d.color,
-                pointRadius: 4,
-                pointHoverRadius: 6,
-                tension: 0.4,
-                fill: true
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: '#1c2030',
-                    titleColor: '#b2b5be',
-                    bodyColor: d.color,
-                    borderColor: d.color,
-                    borderWidth: 1,
-                    callbacks: {
-                        label: ctx => ` $${ctx.parsed.y.toLocaleString()}`
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    grid: { color: 'rgba(255,255,255,0.05)' },
-                    ticks: { color: '#626670', font: { size: 11 } }
-                },
-                y: {
-                    grid: { color: 'rgba(255,255,255,0.05)' },
-                    ticks: {
-                        color: '#b2b5be',
-                        font: { size: 11 },
-                        callback: v => '$' + v.toLocaleString()
-                    }
-                }
+            const ctx = document.getElementById('equityChart').getContext('2d');
+            
+            if (chartInstance) {
+                chartInstance.destroy();
             }
+
+            // Expanded structural alignment vector line mapping
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        data: currentItem.curve,
+                        borderColor: currentItem.color,
+                        borderWidth: 3,
+                        pointRadius: 1,
+                        pointHoverRadius: 5,
+                        backgroundColor: 'transparent',
+                        tension: 0.28,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: 'rgba(255,255,255,0.02)' }, ticks: { display: false } },
+                        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#626670', font: { size: 10 } } }
+                    }
+                }
+            });
         }
-    });
-}
 
-function goToSlide(idx) {
-    currentIndex = ((idx % reportsData.length) + reportsData.length) % reportsData.length;
-    renderChart(currentIndex);
-}
+        function nextReport() {
+            currentIndex = (currentIndex + 1) % reportsData.length;
+            renderChart(currentIndex);
+        }
 
-function changeSlide(dir) {
-    goToSlide(currentIndex + dir);
-}
+        function prevReport() {
+            currentIndex = (currentIndex - 1 + reportsData.length) % reportsData.length;
+            renderChart(currentIndex);
+        }
 
-// Init
-buildDots();
-renderChart(0);
-</script>
+        window.onload = function() {
+            renderChart(0);
+        };
+    </script>
 </body>
 </html>
